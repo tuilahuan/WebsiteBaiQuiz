@@ -1,0 +1,73 @@
+.register-main{
+    display:flex;
+    .imageLeft{
+        img{
+            height: 100vh;
+            width: 600px;
+        }
+    }
+    .register-container{
+        width: 100%;
+        .header{
+            height: 50px;
+            text-align: right;
+            padding: 10px 100px 10px 0;
+            button{
+                margin: 0 15px;
+                border: 1px solid black;
+                height: 35px;
+                width: 100px;
+                border-radius: 5px;
+                &:hover{
+                    background-color: rgb(220, 220, 220);
+                }
+            }
+        }
+        .title{
+            font-size: 30px;
+            text-align: center;
+            margin-top: 150px
+        }
+        .welcome{
+            font-size: 20px;
+            text-align: center;
+        }
+        .form-content{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+            margin-top: 20px;
+            input{
+                width: 35%;
+                height: 40px;
+                border: 1px solid rgb(194, 194, 194);
+                border-radius: 5px
+            }
+            button{
+                width: 25%;
+                height: 40px;
+                border: none;
+                background-color: black;
+                color: white;
+                font-size: 20px;
+                border-radius: 5px;
+            }
+            .password{
+                position: relative;
+                .icon-hidden{
+                    cursor: pointer;
+                    position: absolute;
+                    right: 440px;
+                    bottom: 7px;
+                }
+            }
+            .re-password{
+                margin-left: 18px;
+            }
+        }
+        .back{
+        cursor: pointer;
+       }
+    }
+}
