@@ -1,4 +1,19 @@
 .login-container{
+    .loaderIcon{
+    margin-right: 7px;
+    top: 2px;
+    color: rgb(0, 162, 255);
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
     .header{
         height: 45px;
         text-align: right;
@@ -22,6 +37,8 @@
     .welcome{
         font-size: 20px;
         padding: 10px 0;
+                text-align: center;
+
     }
     .content-form{
        input{
@@ -36,6 +53,12 @@
         margin: 20px 0 ;
         color: rgb(255, 255, 255);
         background: black;
+
+        &:disabled{
+            background: #dddddd;
+            color: #afafaf;
+            cursor: no-drop;
+        }
        }
        .back{
         cursor: pointer;

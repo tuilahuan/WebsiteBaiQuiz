@@ -3,20 +3,28 @@ import '../Auth/Login.scss'
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiServices';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/useAction'
+import { CgSpinnerTwo } from 'react-icons/cg'
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
-    const handleLogin = async () => {
-        let data = await postLogin(email, password);
+    const dispatch = useDispatch()
+    const [isLoadingData, setIsLoadingData] = useState(false)
 
+    const handleLogin = async () => {
+        setIsLoadingData(true)
+        let data = await postLogin(email, password);
         if (data && data.EC === 0) {
+            dispatch(doLogin(data))
             toast.success(data.EM);
+            setIsLoadingData(false);
             navigate('/')
         }
         if (data && +data.EC !== 0) {
             toast.error(data.EM)
-            return;
+            setIsLoadingData(false)
         }
     }
     return (
@@ -41,7 +49,7 @@ const Login = (props) => {
                         onChange={(event) => setEmail(event.target.value)}></input>
                 </div>
                 <div className="form-group">
-                    <label>password</label>
+                    <label>Password</label>
                     <input
                         type={"password"}
                         className="form-control"
@@ -53,7 +61,10 @@ const Login = (props) => {
                 <div>
                     <button
                         className='btn-submit'
-                        onClick={() => handleLogin()}>
+                        onClick={() => handleLogin()}
+                        disabled={isLoadingData}
+                    >
+                        {isLoadingData === true && <CgSpinnerTwo className="loaderIcon" />}
                         Login
                     </button>
                 </div>
